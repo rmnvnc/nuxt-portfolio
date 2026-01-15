@@ -1,1 +1,12 @@
+@config "../../../tailwind.config.ts";
 @import "tailwindcss";
+
+@layer base {
+  body {
+    @apply bg-white text-green-900;
+
+    @variant dark {
+      @apply bg-gray-900 text-gray-300;
+    }
+  }
+}
