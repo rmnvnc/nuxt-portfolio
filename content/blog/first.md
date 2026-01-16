@@ -1,3 +1,8 @@
+---
+title: 'Title of the first blog'
+description: 'meta description of the page'
+---
+
 # First post on our website
 ## Introduction 
 This is some text. *This is italic*.
