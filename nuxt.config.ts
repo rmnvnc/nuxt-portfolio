@@ -2,6 +2,7 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  srcDir: 'app/',
   site: { 
     url: 'http://localhost:3000', 
     name: 'My portfolio' 
