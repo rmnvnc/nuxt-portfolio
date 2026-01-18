@@ -13,6 +13,11 @@ useSeoMeta({
     twitterTitle: page.value?.title,
     twitterDescription: page.value?.description,
 })
+
+defineOgImageComponent('NuxtSeo', {
+    title: page.value?.title,
+    description: page.value?.description
+})
 </script>
 
 <template>

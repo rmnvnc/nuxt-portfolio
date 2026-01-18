@@ -2,6 +2,10 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  site: { 
+    url: 'http://localhost:3000', 
+    name: 'My portfolio' 
+  }, 
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
   css: ['./app/assets/css/main.css'],
@@ -23,5 +27,5 @@ export default defineNuxtConfig({
     ],
   },
 
-  modules: ['@nuxtjs/color-mode', '@nuxt/content'],
+  modules: ['@nuxtjs/color-mode', '@nuxt/content', 'nuxt-og-image'],
 })
