@@ -18,6 +18,38 @@ defineOgImageComponent('NuxtSeo', {
     title: page.value?.title,
     description: page.value?.description
 })
+
+const activeId = ref(null)
+onMounted(() => {
+    const callback = (entries) => {
+        for (const entry of entries) {
+            if (entry.isIntersecting) {
+                activeId.value = entry.target.id
+                break;
+            }
+        }
+    }
+
+    const observer = new IntersectionObserver(callback, {
+        root: null,
+        threshold: 0.5
+    })
+
+    const elements = document.querySelectorAll('h2')
+
+    for (const element of elements) {
+        observer.observe(element)
+    }
+
+    onBeforeUnmount(() => {
+        for (const element of elements) {
+            observer.unobserve(element)
+        }
+    })
+})
+
+
+
 </script>
 
 <template>
@@ -30,7 +62,7 @@ defineOgImageComponent('NuxtSeo', {
                 <nav class="rounded-lg border p-4">
                 <p class="mb-3 text-sm font-semibold opacity-70">Table of Content</p>
                 <ul>
-                    <li v-for="section in page?.body.toc.links">
+                    <li v-for="section in page?.body.toc.links" :class="{'bg-red-500' : activeId == section.id}" class="rounded-xs px-1">
                         <NuxtLink :to="{hash: `#${section.id}`}">
                             {{ section.text }}
                         </NuxtLink>
