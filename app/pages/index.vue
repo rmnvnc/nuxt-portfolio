@@ -1,20 +1,29 @@
-<template>
-    <div>
-        Helllo from main page
-    </div>
-</template>
 
 <script setup lang="ts">
-useHead({
-    title: 'Home Page'
-});
+const route = useRoute()
+const { data: page } = await useAsyncData(route.path, () => {
+    return queryCollection('content').path(route.path).first()
+})
+
+const title = page.value?.seo?.title || page.value?.title
+const description = page.value?.seo?.description || page.value?.description
 
 useSeoMeta({
-    title: 'Home Page',
-    description: 'Welcome to the home page of my Nuxt portfolio site.'
-});
+  title,
+  description,
+  ogTitle: title,
+  ogDescription: description
+})
+
+defineOgImageComponent('NuxtSeo', {
+    title: title,
+    description: description
+})
+
 </script>
 
-<style scoped>
-
-</style>
+<template>
+    <article class="prose dark:prose-invert">
+        <ContentRenderer v-if="page" :value="page" />
+    </article>
+</template>
