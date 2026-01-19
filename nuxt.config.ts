@@ -27,6 +27,9 @@ export default defineNuxtConfig({
       tailwindcss(),
     ],
   },
+  app: {
+    pageTransition: { name: 'page', mode: 'out-in' },
+  },
 
   modules: ['@nuxtjs/color-mode', '@nuxt/content', 'nuxt-og-image'],
 })
