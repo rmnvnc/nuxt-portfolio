@@ -47,9 +47,6 @@ onMounted(() => {
         }
     })
 })
-
-
-
 </script>
 
 <template>
@@ -57,6 +54,9 @@ onMounted(() => {
         <div class="grid gap-8 lg:grid-cols-[1fr_280px]">
             <article class="bg-red-500 dark:bg-amber-300 dark:text-black p-5 rounded-lg prose dark:prose-invert prose-pre:bg-amber-300 dark:prose-pre:bg-amber-100 min-w-0 max-w-none">
                 <ContentRenderer v-if="page" :value="page" />
+                <template v-else>
+                    Not Found
+                </template>
             </article>
             <aside v-if="page?.body.toc?.links.length" class="lg:sticky lg:top-10 h-fit order-first lg:order-last">
                 <nav class="rounded-lg border p-4">
