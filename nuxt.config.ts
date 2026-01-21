@@ -11,6 +11,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   css: ['./app/assets/css/main.css'],
   content: {
+    experimental: { sqliteConnector: 'native' },
     build: {
       markdown: {
         highlight: {
