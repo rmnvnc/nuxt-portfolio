@@ -1,10 +1,11 @@
 import { SitemapStream, streamToPromise } from 'sitemap'
+const { public: pub } = useRuntimeConfig()
 
 export default defineEventHandler(async (event) => {
     const docs = await queryCollection(event, 'content').all()
 
     const sitemap = new SitemapStream({
-        hostname: 'http://localhost:3000'
+        hostname: pub.siteUrl
     })
 
     for (const doc of docs) {

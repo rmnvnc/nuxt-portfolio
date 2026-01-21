@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineNuxtConfig({
   srcDir: 'app/',
   site: { 
-    url: 'http://localhost:3000', 
+    url: 'https://nuxt-portfolio-beryl-nu.vercel.app/', 
     name: 'My portfolio' 
   }, 
   compatibilityDate: '2025-07-15',
@@ -36,6 +36,10 @@ export default defineNuxtConfig({
   app: {
     pageTransition: { name: 'page', mode: 'out-in' },
   },
-
+   runtimeConfig: {
+    public: {
+      siteUrl: process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000'
+    }
+  },
   modules: ['@nuxtjs/color-mode', '@nuxt/content', 'nuxt-og-image'],
 })
