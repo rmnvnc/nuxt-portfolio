@@ -74,12 +74,12 @@ bun run preview
 
 Caching
 
-| File |	Caching | Type |	Layer
-| server/api/projects.ts | 	HTTP Headers + Nitro Storage	| Server/Edge
-| nuxt.config.ts  (routeRules.headers) |	HTTP Cache Headers	| Edge
-| nuxt.config.ts  (routeRules.isr)|	ISR	| Edge/Static
-| nuxt.config.ts  (nitro.storage)|	Nitro Storage Config	| Server
-| app/components/content/ProjectList.vue | Payload Cache	| Client
+| File |	Caching | Type |	Layer |
+| server/api/projects.ts | 	HTTP Headers + Nitro Storage	| Server/Edge|
+| nuxt.config.ts  (routeRules.headers) |	HTTP Cache Headers	| Edge|
+| nuxt.config.ts  (routeRules.isr)|	ISR	| Edge/Static|
+| nuxt.config.ts  (nitro.storage)|	Nitro Storage Config	| Server|
+| app/components/content/ProjectList.vue | Payload Cache	| Client|
 | app/pages/*.vue	| Payload | Cache	Client
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
