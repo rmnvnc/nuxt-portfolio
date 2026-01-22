@@ -23,7 +23,25 @@ export default defineNuxtConfig({
   nitro: {
     prerender: {
       routes: ['/sitemap.xml']
+    },
+    // Storage for caching
+    storage: {
+      cache: {
+        driver: 'memory', // or 'redis' for production
+      }
     }
+  },
+  // Add route rules for ISR-like behavior
+  routeRules: {
+    // Static pages - fully static
+    '/about': { 
+      prerender: true,
+      headers: { 'Cache-Control': 's-maxage=86400' }
+    },
+    '/projects': { 
+      prerender: true,
+      headers: { 'Cache-Control': 's-maxage=86400' }
+    },
   },
   colorMode: {
     classSuffix: '',
