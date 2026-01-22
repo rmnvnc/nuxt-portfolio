@@ -74,8 +74,8 @@ bun run preview
 
 Caching
 
-| File |	Caching | Type |	Layer |
-| ------------- | ------------- |  ------------- |  ------------- |
+| File |	Caching Type |	Layer |
+| ------------- | ------------- |  ------------- | 
 | server/api/projects.ts | 	HTTP Headers + Nitro Storage	| Server/Edge |
 | nuxt.config.ts  (routeRules.headers) |	HTTP Cache Headers	| Edge |
 | nuxt.config.ts  (routeRules.isr) |	ISR	| Edge/Static |
