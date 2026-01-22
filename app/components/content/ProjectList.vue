@@ -1,5 +1,15 @@
 <script setup lang="ts">
-    const {error, pending, data: projects } = await useFetch('https://api.github.com/users/rmnvnc/repos');
+    const {error, pending, data: projects } = await useAsyncData(
+        'github-projects', 
+        () => $fetch('/api/projects'),
+        {
+            getCachedData: (key) => {
+                return useNuxtApp().payload.data[key]
+            },
+            server: true,
+            default: () => [],
+        }
+    );
 
     const sortedProjects = computed(() => {
         return projects.value ? projects.value.sort((a, b) => b.size - a.size) : [];
