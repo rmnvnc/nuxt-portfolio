@@ -1,9 +1,17 @@
 
 <script setup lang="ts">
 const route = useRoute()
-const { data: page } = await useAsyncData(route.path, () => {
-    return queryCollection('blog').path(route.path).first()
-})
+const { data: page } = await useAsyncData(
+    route.path, 
+    () =>  queryCollection('blog').path(route.path).first(),
+    {
+        getCachedData: (key) => {
+            return useNuxtApp().payload.data[key]
+        },
+        server: true,
+        default: () => null,
+    }
+)
 
 useSeoMeta({
     title: page.value?.title,
