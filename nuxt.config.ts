@@ -33,6 +33,16 @@ export default defineNuxtConfig({
   },
   // Add route rules for ISR-like behavior
   routeRules: {
+    // Homepage - ISR with 1 hour revalidation
+    '/': { 
+      isr: 3600, // Revalidate every hour
+      prerender: true 
+    },
+    // Blog posts - ISR with 1 day revalidation
+    '/blog/**': { 
+      isr: 86400, // Revalidate every day
+      prerender: true 
+    },
     // Static pages - fully static
     '/about': { 
       prerender: true,
