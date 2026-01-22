@@ -1,4 +1,6 @@
 <script setup lang="ts">
+    const route = useRoute()
+
     const props = defineProps({
         limit: {
             type: Number,
@@ -6,7 +8,7 @@
         }
     })
 
-    const { data: posts } = await useAsyncData('blog-posts', () => {
+    const { data: posts } = await useAsyncData(`blog-posts:${route.path}`, () => {
         return queryCollection('blog')
             .select('id', 'path', 'title', 'stem')
             .where('stem', '<>', 'blog/index')
