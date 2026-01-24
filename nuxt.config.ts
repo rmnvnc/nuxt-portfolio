@@ -27,7 +27,16 @@ export default defineNuxtConfig({
     // Storage for caching
     storage: {
       cache: {
-        driver: 'memory', // or 'redis' for production
+        driver: 'upstash',
+        base: 'cache',
+        ttl: 60,
+        url: process.env.KV_REST_API_URL,
+        token: process.env.KV_REST_API_TOKEN
+      }
+    },
+    devStorage: {
+      cache: {
+        driver: 'memory'
       }
     }
   },
