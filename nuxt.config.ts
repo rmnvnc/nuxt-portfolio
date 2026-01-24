@@ -29,7 +29,9 @@ export default defineNuxtConfig({
       cache: {
         driver: 'upstash',
         base: 'cache',
-        ttl: 60
+        ttl: 60,
+        url: process.env.KV_REST_API_URL,
+        token: process.env.KV_REST_API_TOKEN
       }
     },
     devStorage: {
