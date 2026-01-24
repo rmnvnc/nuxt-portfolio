@@ -53,7 +53,7 @@ export default defineEventHandler(async (event) => {
         await storage.setItem(cacheKey, {
             data: transformedData,
             timestamp: Date.now()
-        })
+        },{ ttl: 60 })
         
         return transformedData
     } catch (error: any) {

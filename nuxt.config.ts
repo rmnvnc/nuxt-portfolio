@@ -27,7 +27,14 @@ export default defineNuxtConfig({
     // Storage for caching
     storage: {
       cache: {
-        driver: 'memory', // or 'redis' for production
+        driver: 'upstash',
+        base: 'cache',
+        ttl: 60
+      }
+    },
+    devStorage: {
+      cache: {
+        driver: 'memory'
       }
     }
   },
