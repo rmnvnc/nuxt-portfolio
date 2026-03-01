@@ -7,21 +7,13 @@ export default defineEventHandler(async (event) => {
     const cachedData = await storage.getItem(cacheKey)
 
     if (cachedData) {
-        // Check if cached data is still valid
-        const {data, timestamp} = cachedData as {data: any, timestamp: number}
-        const age = (Date.now() - timestamp) / 1000 // age in seconds
-
-        if (age < cacheTTL) {
-            // Cache is still valid, return cached data
-            setHeader(event, 'X-Cache', 'HIT')
-            setHeader(event, 'Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=86400')
-            return data
-        }
-        
-        // Cache miss or expired - fetch from GitHub
-        setHeader(event, 'X-Cache', 'MISS')
+        setHeader(event, 'X-Cache', 'HIT')
         setHeader(event, 'Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=86400')
+        return cachedData
     }
+
+    setHeader(event, 'X-Cache', 'MISS')
+    setHeader(event, 'Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=86400')
 
 
     try {
@@ -50,10 +42,7 @@ export default defineEventHandler(async (event) => {
         }))
         
         // Store in cache with timestamp
-        await storage.setItem(cacheKey, {
-            data: transformedData,
-            timestamp: Date.now()
-        },{ ttl: 60 })
+        await storage.setItem(cacheKey, transformedData, { ttl: cacheTTL })
         
         return transformedData
     } catch (error: any) {
